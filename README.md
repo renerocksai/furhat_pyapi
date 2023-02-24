@@ -46,12 +46,12 @@ No other specific requirements.
 
 After starting the skill, switch to the wizard view of Furhat's web interface.
 
-Make sure that the python server is started. See the section above.
+_(Make sure that the python server is started. See the section above.)_
 
 There, you'll find a button "python" that, when pressed, will fetch the next
-random greeting from the python API server:
+random greeting from the python API server - and have Furhat speak it:
 
-```
+```kotlin
     onButton("python") {
         var response = khttp.get("http://localhost:5000/greet/rene");
         var greeting = response.jsonObject.get("greeting");
