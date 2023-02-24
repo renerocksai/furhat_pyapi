@@ -1,7 +1,7 @@
 import random 
 
 # from openai playground:
-# Generate a list of English greeting templates where the person to be greeted 
+# Generate a list of English greeting templates where the person to be greeted
 # is represented by the letter X. Example: "hello, X!"
 #
 # 1. Hi, X!
@@ -33,11 +33,12 @@ def greet(whom):
     return random.choice(choices).replace("X", whom)
 
 
+# test it on the command line
 if __name__ == '__main__':
     import sys
 
     if len(sys.argv) < 2:
-        print("Usage: [python] greet.py <whom>")
+        print("Usage: [python] greets.py <whom>")
         sys.exit(1)
 
     whom = sys.argv[1]
