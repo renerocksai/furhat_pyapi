@@ -26,14 +26,17 @@ To start the development server from the command line:
 $ cd python 
 $ python main.py
 ```
+![](img/term.png)
 
 Then point your browser to: 
 
-- [http://localhost:5000/shuffle](http://localhost:5000/shuffle).
-- [http://localhost:5000/greet/rene](http://localhost:5000/greet/rene).
+- [http://localhost:5000/shuffle](http://localhost:5000/shuffle)
+- [http://localhost:5000/greet/rene](http://localhost:5000/greet/rene)
 
 ... to get a feel for what the server sends back. You see the JSON responses
 that the furhat skill will receive.
+
+![](img/browser.png)
 
 ## Furhat skill 
 
