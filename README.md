@@ -5,7 +5,8 @@ This is a minimal sample project to showcase:
 - how to expose arbitrary python code as JSON APIs over HTTP, utilizing
   [flask](https://palletsprojects.com/p/flask/) and
   [flask-restful](https://flask-restful.readthedocs.io/en/latest/)
-- how to consume said API from a Furhat Skill
+- how to consume said API from a Furhat Skill, utilizing
+  [khttp](https://khttp.readthedocs.io/en/latest/)
 
 It consists of the python project and a Furhat skill project. All the
 python-related code is contained in the [python/](python/) subdirectory, while
@@ -57,12 +58,35 @@ that the furhat skill will receive.
 
 ## Furhat skill 
 
-After starting the skill, switch to the wizard view of Furhat's web interface.
+To build the skill, we needed to add [khttp](https://khttp.readthedocs.io/en/latest/) to [build.gradle](build.gradle):
 
-_(Make sure that the python server is started. See the section above.)_
+```gradle
+// ...
 
-There, you'll find a button "python" that, when pressed, will fetch the next
-random greeting from the python API server - and have Furhat speak it:
+dependencies {
+    compile 'com.furhatrobotics.furhatos:furhat-commons:2.5.0'
+    compile 'khttp:khttp:1.0.0'   // <------- to talk to python
+}
+
+// ...
+```
+
+If you don't use an IDE, build the Furhat skill like this:
+
+```shell 
+$ ./gradlew shadowJar   # on Linux
+$ gradlew shadowJar     # on Windows (assumed, not verified)
+```
+
+After uploading and starting the skill, switch to the wizard view in Furhat's
+web interface.
+
+_(Make sure that the python server is started by now. See the section above.)_
+
+There, you'll find a button "python" that, when pressed, will have Furhat fetch
+the next random greeting from the python API server - and speak it:
+
+From [src/main/kotlin/furhatos/app/furhat_pyapi/flow/main/greeting.kt](src/main/kotlin/furhatos/app/furhat_pyapi/flow/main/greeting.kt):
 
 ```kotlin
     onButton("python") {
