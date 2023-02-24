@@ -58,7 +58,7 @@ that the furhat skill will receive.
 
 ## Furhat skill 
 
-To build the skill, we needed to add [khttp](https://khttp.readthedocs.io/en/latest/) to [build.gradle](build.gradle):
+To build the skill, we needed to add [khttp](https://khttp.readthedocs.io/en/latest/) to [build.gradle](https://github.com/renerocksai/furhat_pyapi/blob/master/build.gradle#L50):
 
 ```gradle
 // ...
@@ -86,7 +86,7 @@ _(Make sure that the python server is started by now. See the section above.)_
 There, you'll find a button "python" that, when pressed, will have Furhat fetch
 the next random greeting from the python API server - and speak it:
 
-From [src/main/kotlin/furhatos/app/furhat_pyapi/flow/main/greeting.kt](src/main/kotlin/furhatos/app/furhat_pyapi/flow/main/greeting.kt):
+From [src/main/kotlin/furhatos/app/furhat_pyapi/flow/main/greeting.kt](https://github.com/renerocksai/furhat_pyapi/blob/master/src/main/kotlin/furhatos/app/furhat_pyapi/flow/main/greeting.kt#L17):
 
 ```kotlin
     onButton("python") {
