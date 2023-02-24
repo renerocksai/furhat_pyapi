@@ -13,6 +13,7 @@ val Greeting : State = state(Parent) {
     onResponse<Yes> {
         furhat.say("Hello World! .")
     }
+
     onButton("python") {
         var response = khttp.get("http://localhost:5000/greet/rene");
         var greeting = response.jsonObject.get("greeting");
