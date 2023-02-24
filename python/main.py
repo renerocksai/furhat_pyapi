@@ -2,63 +2,49 @@ from flask import (
     Flask,
     jsonify,
     make_response,
-    request,
+    # request,
 )
-from flask_restful import Api, Resource, reqparse, fields, marshal, inputs
+
+from flask_restful import (
+    Api,
+    Resource,
+)
+
+from greets import greet
 
 app = Flask(__name__)
 api = Api(app)
 
 
-
-class DemoApi(Resource):
-
-    def __init__(self):
-        self.count = len(greets)
-
-    def get(self, greetid):
-        if greetid in greets:
-            return make_response(jsonify(greets[greetid]))
-
-    def post(self):
-        body = request.json
-        first_name = body.get("first_name", None)
-        last_name = body.get("last_name", None)
-
-        if first_name is not None and last_name is not None:
-            self.count += 1
-            greets[self.count] = {
-                'id': self.count,
-                'first_name': first_name,
-                'last_name': last_name,
-                }
-            return make_response(jsonify({'status': 'OK', 'id': self.count}))
-
-    def put(self, greetid):
-        if greetid in greets:
-            body = request.json
-            first_name = body.get("first_name", None)
-            last_name = body.get("last_name", None)
-
-            if first_name is not None and last_name is not None:
-                greets[greetid]['first_name'] = first_name
-                greets[greetid]['last_name'] = last_name
-                return make_response(jsonify({'status': 'OK', 'id': greetid}))
-
-    def delete(self, greetid):
-        if greetid in greets:
-            del greets[greetid]
-            return make_response(jsonify({'status': 'OK', 'id': greetid}))
+class GreetApi(Resource):
+    def get(self, name):
+        # we return a dict, converted to JSON
+        return make_response(jsonify({
+            'result': greet(name),
+            'status': 'OK',
+            }))
 
 
-api.add_resource(DemoApi, "/greets/<int:greetid>", endpoint="Demo")
-api.add_resource(DemoApi, "/greets", endpoint="Demox")
+class ShuffleApi(Resource):
+    def get(self):
+        # we return a dict, converted to JSON
+        return make_response(jsonify({
+            'status': 'OK',
+            }))
 
 
+api.add_resource(GreetApi, "/greet/<string:name>", endpoint="Greet")
+api.add_resource(ShuffleApi, "/shuffle", endpoint="Shuffle")
+
+
+# we don't need Resources, we can also just call on slugs
 @app.route("/")
 def get():
-    return make_response(app.send_static_file("index.html"))
+    # return make_response(app.send_static_file("index.html"))
+    return make_response(jsonify({
+        'status': 'Not implemented',
+        }))
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=3000)
+    app.run(debug=True, host="0.0.0.0", port=5000)

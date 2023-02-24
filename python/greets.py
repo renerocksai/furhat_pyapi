@@ -29,8 +29,14 @@ choices = [
 ]
 
 
+# this is the function we're going to export
 def greet(whom):
     return random.choice(choices).replace("X", whom)
+
+
+# just to get a 2nd function to export
+def shuffle():
+    random.shuffle(choices)
 
 
 # test it on the command line
