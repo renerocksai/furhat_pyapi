@@ -20,7 +20,7 @@ class GreetApi(Resource):
     def get(self, name):
         # we return a dict, converted to JSON
         return make_response(jsonify({
-            'result': greet(name),
+            'greeting': greet(name),
             'status': 'OK',
             }))
 
