@@ -1,5 +1,5 @@
 {
-  description = "python flask api";
+  description = "python flask api plus furhat";
   # nixConfig.bash-prompt = "nix-develop $ ";
 
   inputs = {
@@ -51,6 +51,7 @@
             python39Packages.flask
             python39Packages.flask-restful
             python39Packages.gunicorn
+            jdk8
           ];
 
           buildInputs = with pkgs; [

@@ -40,11 +40,14 @@ repositories {
     mavenCentral()
     maven { url "https://s3-eu-west-1.amazonaws.com/furhat-maven/releases"}
     maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+    maven { url { "https://repo1.maven.org/maven2/" } }
+    jcenter()
 }
 
 
 dependencies {
-    compile 'com.furhatrobotics.furhatos:furhat-commons:2.3.0'
+    compile 'com.furhatrobotics.furhatos:furhat-commons:2.5.0'
+    compile 'khttp:khttp:1.0.0'   // to talk to python
 }
 
 jar {
