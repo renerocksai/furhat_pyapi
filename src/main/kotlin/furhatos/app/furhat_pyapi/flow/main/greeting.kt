@@ -17,7 +17,7 @@ val Greeting : State = state(Parent) {
     onButton("python") {
         var response = khttp.get("http://localhost:5000/greet/rene");
         var greeting = response.jsonObject.get("greeting");
-        print(greeting);
+        println(greeting);
         furhat.say(greeting as String);
     }
 
